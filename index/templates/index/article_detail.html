@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	
+		<div class="my-container">
+				<div class="object-header">
+					<div class="author-date">
+						<a href="">@{{ object.author }}</a> | {{ object.date }}
+					</div>
+					
+				</div>
+
+				<div class="object-body">
+					
+
+					<div class="object-name">
+						<h4>
+							{{ object.first_name }} {{ object.third_name }} 
+
+							{% if object.jynys == 'Ұл' %}
+								{{ object.last_name }}ұлы
+							{% elif object.jynys == 'Қыз' %}
+								{{ object.last_name }}қызы
+							{% endif %}
+						</h4>
+						<p><strong>Жүз: </strong>{{ object.jus }}</p>
+						<p><strong>Ру: </strong>{{ object.ru }}</p>
+						<p>{{ object.birth_day }} {{ object.birth_mounth }} {{ object.birth_year }}</p>
+
+						{% if object.facebook %}
+							<p class="btn-facebook"><i  style="font-size: 22px; " class="fab fa-facebook-square"></i> <a href="{{ object.facebook }}" target="_blank">{{ object.first_name }} {{ object.third_name }} </a></p>
+						{% endif %}
+
+						{% if object.instagram %}
+							<p class="btn-instagram"><i style="font-size: 22px; "  class="fab fa-instagram-square"></i> <a href="{{ object.instagram }}" target="_blank">{{ object.first_name }} {{ object.third_name }} </a></p>
+						{% endif %}
+
+						{% if object.whatsapp %}
+							<p class="btn-whatsapp"><i style="font-size: 22px; " class="fab fa-whatsapp-square"></i> {{ object.whatsapp }}</p>
+						{% endif %}
+						
+					</div>
+
+					<hr>
+
+					<div class="object-biog">
+						{{ object.biog }}
+					</div>
+
+					
+				</div>
+
+				
+	
+			</div>
+
+			<a href="{% url 'home' %}" class="btn btn-secondary" style="margin-left:10%; margin-top: 50px; ">Артқа</a>
+{% endblock %}

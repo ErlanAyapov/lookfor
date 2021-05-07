@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br>
+	<div class="container">
+		<form action="" method="POST">
+			{% csrf_token %}
+			{{ post_form.biog }}<br>
+			<button type="submit" class="btn btn-primary">Қосу</button>
+		</form>
+	</div>
+{% endblock %}

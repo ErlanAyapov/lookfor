@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}<title>Tuysqans | тіркелу</title>{% endblock %}
+{% block content %}
+<style type="text/css">
+	input {
+		margin-bottom: 10px;
+	}
+</style>
+	<br><br><br>
+	<div class="register-form form">
+		<h2>Аккаунтқа кіру</h2>
+		<form method="POST" action="">
+			{% csrf_token %}
+			<label>Қолданушы атауы</label><br>
+			<input type="text" name="username"><br> 
+
+			<label>Құпия сөз</label><br>
+			<input type="password" name="password"><br>
+			<button type="submit">Кіру</button><br><br>
+
+			Егер аккаунтыңыз жоқ болса <a href="{% url 'register' %}">тіркеліңіз</a>
+		</form>
+	</div>
+{% endblock %}

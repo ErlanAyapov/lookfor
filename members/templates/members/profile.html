@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<br>
+
+
+<div class="left-bar">
+	<h3>@{{ object.username }}</h3>
+
+	<div class="left-bar-nav">
+		{% if object == request.user %}
+		<p id="nav-1"><a href=""><i class="fas fa-user-edit"></i> Өзгерту</a></p>
+		<p id="nav-1"><a href="{% url 'logout' %}"><i class="fas fa-door-open"></i> Шығу</a></p>
+		<!-- <p id="nav-2"><a href="{% url 'dialogs' %}"><i class="fas fa-envelope"></i> Хат алмасу</a></p>
+		<p id="nav-3"><a href=""><i class="fas fa-user-friends"></i> Достар</a></p> -->
+		{% endif %}
+	</div>
+
+	
+</div>
+
+<div class="right-content">
+	
+
+	<div> 
+		<br>		
+		<div class="profile-form">
+			<form action="{% url 'add_post' %}" method="POST">
+				{% csrf_token %}
+				<textarea name="biog" rows="5" class="form-control" placeholder="Жаңалықпен бөліс" required id="id_biog"></textarea> 
+				<button type="submit" class="btn btn-primary">Қосу</button>
+			</form>
+		</div>
+	 
+		{% if news %}
+
+	
+		{% for obj in news %}
+			{% if obj.author == object %}
+			{% if obj.category == 'Іздеу' %}
+			<div class="my-container">
+				<div class="object-header">
+					<div class="author-date">
+						<a href="{% url 'profile' obj.author.id %}"> @{{ obj.author }} </a>  | {{ obj.date }}
+						
+					</div>
+						
+					<div class="nav-icon"> 
+						<div>
+							<a href="{% url 'details' obj.id %}" id="icon">
+								<i class="fas fa-angle-double-right"></i></a>
+
+							{% if obj.author == request.user %}
+							<a href="{% url 'update' obj.id %}" id="icon">
+								<i class="fas fa-pen" ></i></a>
+
+							<a href="{% url 'delete' obj.id %}" id="icon">
+								<i class="fas fa-trash"></i></i></a>
+							{% endif %}	
+						</div>
+					</div> 
+				</div>
+
+				<div class="object-body">
+					
+
+					<div class="object-name">
+						<h4>
+							{{ obj.first_name }} {{ obj.third_name }} 
+							{% if obj.last_name %}
+							{% if obj.jynys == 'Ұл' %}
+								{{ obj.last_name }}ұлы
+							{% elif obj.jynys == 'Қыз' %}
+								{{ obj.last_name }}қызы
+							{% endif %}
+							{% endif %}
+						</h4>
+						<p><strong>Жүз: </strong>{{ obj.jus }}</p>
+						<p><strong>Ру: </strong>{{ obj.ru }}</p>
+						<p>{{ obj.birth_day }} {{ obj.birth_mounth }} {{ obj.birth_year }}</p>
+
+						{% if obj.facebook %}
+							<p class="btn-facebook"><i  style="font-size: 22px; " class="fab fa-facebook-square"></i> <a href="{{ obj.facebook }}" target="_blank">{{ obj.first_name }} {{ obj.third_name }} </a></p>
+						{% endif %}
+
+						{% if obj.instagram %}
+							<p class="btn-instagram"><i style="font-size: 22px; "  class="fab fa-instagram-square"></i> <a href="{{ obj.instagram }}" target="_blank">{{ obj.first_name }} {{ obj.third_name }} </a></p>
+						{% endif %}
+
+						{% if obj.whatsapp %}
+							<p class="btn-whatsapp"><i style="font-size: 22px; " class="fab fa-whatsapp-square"></i> {{ obj.whatsapp }}</p>
+						{% endif %}
+						
+					</div>
+
+					<hr>
+
+					<div class="object-biog">
+						{{ obj.biog }}
+					</div>
+
+					
+				</div>
+				
+			</div>
+			{% elif obj.category == 'Пост' %}
+				<div class="my-container">
+					<div class="object-header">
+						<div class="author-date">
+							<a href="{% url 'profile' obj.author.id %}"> @{{ obj.author }} </a>  | {{ obj.date }}
+							
+						</div>
+							
+						<div class="nav-icon"> 
+							<div>
+								<a href="{% url 'details' obj.id %}" id="icon">
+									<i class="fas fa-angle-double-right"></i></a>
+
+								{% if obj.author == request.user %}
+								<a href="{% url 'update' obj.id %}" id="icon">
+									<i class="fas fa-pen" ></i></a>
+
+								<a href="{% url 'delete' obj.id %}" id="icon">
+									<i class="fas fa-trash"></i></i></a>
+								{% endif %}	
+							</div>
+						</div> 
+					</div>
+
+					<div class="category-post">
+						<p>{{ obj.biog }}</p>
+					</div>
+
+				</div>
+			{% endif %}
+		 
+			{% endif %}
+		{% endfor %}
+	
+	{% endif %}
+	</div>
+</div>
+
+
+{% endblock %}

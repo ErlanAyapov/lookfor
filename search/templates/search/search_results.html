@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br><br><br> 
+
+	<div class="container">
+        {% if object_list %}
+        
+            
+            {% for i in  object_list%}
+                <div class="search-result-block">
+                <h2>
+                    {{ i.first_name }} {{ i.third_name }} 
+                    {% if i.last_name %}
+                        {% if i.jynys == 'Ұл' %}
+                            {{ i.last_name }}ұлы
+                        {% elif i.jynys == 'Қыз' %}
+                            {{ i.last_name }}қызы
+                        {% endif %}
+                    {% endif %} | <a href="{% url 'details' i.id %}"> толығырақ</a>
+                </h2>
+                <p>{{ i.biog|truncatechars:200  }}</p>
+                
+                </div>
+            {% endfor %}
+           
+        {% else %}
+            <h2><strong>Іздеген адамыңызды таппадық :-(</strong></h2><br>
+            <h3>Мына қадамдардың орындалғанына көз жеткізіңіз</h3>
+            <ul>
+                
+                <li>Іздеу жүйесі жоба ішіненғана іздейді</li>
+                <li>Есімдер қатесіз (әрі ұлы немесе қызы деген жалғаусыз) жазылуы керек</li>
+                <li>Есімі, Әкесі, Атасы, Атасының әкесі ... осы типте іздейсіз (үтірсіз пробель арқылы)</li>
+                <li>Егер есімі мен тегі ғана белгілі болса онда сәйкесінше (Есімі, Атасы ешқандай жалғаусыз)</li>
+            </ul>
+        {% endif %}
+        <br><br><br>
+    </div>
+
+	
+{% endblock %}

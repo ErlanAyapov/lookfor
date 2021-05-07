@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+	{% if user.is_authenticated %}
+	{% if object_list %}
+		{% for object in object_list %} 
+			{% if object.category == 'Іздеу' %}
+			<div class="my-container">
+				<div class="object-header">
+					<div class="author-date">
+						<a href="{% url 'profile' object.author.id %}"> @{{ object.author }} </a>  | {{ object.date }}
+						
+					</div>
+						
+					<div class="nav-icon"> 
+						<div>
+							<a href="{% url 'details' object.id %}" id="icon">
+								<i class="fas fa-angle-double-right"></i></a>
+
+							{% if object.author == request.user %}
+							<a href="{% url 'update' object.id %}" id="icon">
+								<i class="fas fa-pen" ></i></a>
+
+							<a href="{% url 'delete' object.id %}" id="icon">
+								<i class="fas fa-trash"></i></i></a>
+							{% endif %}	
+						</div>
+					</div> 
+				</div>
+
+				<div class="object-body">
+					
+
+					<div class="object-name">
+						<h4>
+							{{ object.first_name }} {{ object.third_name }} 
+							{% if object.last_name %}
+							{% if object.jynys == 'Ұл' %}
+								{{ object.last_name }}ұлы
+							{% elif object.jynys == 'Қыз' %}
+								{{ object.last_name }}қызы
+							{% endif %}
+							{% endif %}
+						</h4>
+						<p><strong>Жүз: </strong>{{ object.jus }}</p>
+						<p><strong>Ру: </strong>{{ object.ru }}</p>
+						<p>{{ object.birth_day }} {{ object.birth_mounth }} {{ object.birth_year }}</p>
+
+						{% if object.facebook %}
+							<p class="btn-facebook"><i  style="font-size: 22px; " class="fab fa-facebook-square"></i> <a href="{{ object.facebook }}" target="_blank">{{ object.first_name }} {{ object.third_name }} </a></p>
+						{% endif %}
+
+						{% if object.instagram %}
+							<p class="btn-instagram"><i style="font-size: 22px; "  class="fab fa-instagram-square"></i> <a href="{{ object.instagram }}" target="_blank">{{ object.first_name }} {{ object.third_name }} </a></p>
+						{% endif %}
+
+						{% if object.whatsapp %}
+							<p class="btn-whatsapp"><i style="font-size: 22px; " class="fab fa-whatsapp-square"></i> {{ object.whatsapp }}</p>
+						{% endif %}
+						
+					</div>
+
+					<hr>
+
+					<div class="object-biog">
+						{{ object.biog }}
+					</div>
+
+					
+				</div>
+				
+			</div>
+			{% elif object.category == 'Пост' %}
+				<div class="my-container">
+					<div class="object-header">
+						<div class="author-date">
+							<a href="{% url 'profile' object.author.id %}"> @{{ object.author }} </a>  | {{ object.date }}
+							
+						</div>
+							
+						<div class="nav-icon"> 
+							<div>
+								<a href="{% url 'details' object.id %}" id="icon">
+									<i class="fas fa-angle-double-right"></i></a>
+
+								{% if object.author == request.user %}
+								<a href="{% url 'update' object.id %}" id="icon">
+									<i class="fas fa-pen" ></i></a>
+
+								<a href="{% url 'delete' object.id %}" id="icon">
+									<i class="fas fa-trash"></i></i></a>
+								{% endif %}	
+							</div>
+						</div> 
+					</div>
+
+					<div class="category-post">
+						<p>{{ object.biog }}</p>
+					</div>
+
+				</div>
+			{% endif %}
+		{% endfor %}
+	{% else %}<br><br>
+	<br><br>
+
+<br><br>
+
+	<h1 style="text-align: center;">Іздегендер жоқ, мына жерден <a href="{% url 'add' %}">ақпарат қосуға</a> болады.</h1>
+	{% endif %}
+	<br><br><br><br>
+	{% else %}<br>
+		<div class="no-auth-container">
+			
+			
+			<div class="block-content-1">
+				Сайт не жоба жайында толығырақ білгіңіз келсе сайтқа <a href="{% url 'register' %}">тіркеліңіз</a>. Тіркелу өте жылдам өтеді, сізге тек қолданушы аты ( username ) мен құпия сөз ойлап табу қажет. Cіз ден сайт ешқандай мәлімет алмайды. Пост қосқандағы мәліметерді өшірсеңіз ол сақталмай бірден деректер қорынан жойылады.
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

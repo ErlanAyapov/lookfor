@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	{% if user.is_authenticated %}
+	<br><br><br>
+		<h1 style="text-align: center;">Пост жою!</h1><br>
+		<h3 style="text-align: center;">Сіз шыныменде жоюды растайсызба?</h3>
+		<div class="container">
+			<form method="post" action="" enctype="multipart/form-data">
+			{% csrf_token %}
+			<br><br><br>
+			
+
+			<button style="display: flex; margin: auto;" type="submit" class="btn btn-danger">Жою</button><br><br><br><br><br><hr>
+			<a type="button" href="{% url 'home' %}" class="btn btn-secondary">Артқа</a>
+			
+		</form>
+		</div>
+
+	{% else %}
+		<h1>Аккаунт керек!!!</h1>
+	{% endif %}
+	
+{% endblock %}

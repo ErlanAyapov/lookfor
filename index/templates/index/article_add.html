@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block add %}
+	          <a class="nav-link" aria-current="page" href="{% url 'add_post' %}"><i class="fas fa-plus-square"></i> Пост қосу</a>
+{% endblock %}
+{% block content %}
+<br><br><br>
+	<div class="container">
+		<form action="" method="POST" class="add-form">
+			<h3>Аты жөніңізді енгізіңіз</h3>
+			{% csrf_token %}
+			<input type="text" name="first_name" class="form-control" placeholder="Есіміңіз" maxlength="40" required id="id_first_name">
+			<input type="text" name="last_name" class="form-control" placeholder="Әкеңіз(ешқандай жалғаусыз) , егер білмесеңіз бос қалдырыңыз" maxlength="40" id="id_last_name">
+			<input type="text" name="third_name" class="form-control" placeholder="Атаңыз (ешқандай жалғаусыз)" maxlength="40" id="id_third_name"><br>
+			<hr>
+			<h3>Бұл өріс сайт әкімшілеріне қолжетімді, тек іздеу жүйесінің дәлдігін арттыру үшін қолданылады</h3>
+			<input type="text" name="fourth_name" class="form-control" placeholder="Атаңыздың әкесі" maxlength="40" id="id_fourth_name">
+			<input type="text" name="fiveth_name" class="form-control" placeholder="Атаңыздың атасы" maxlength="40" id="id_fiveth_name">
+			<input type="text" name="sixth_name" class="form-control" placeholder="Атаңыздың атасының әкесі" maxlength="40" id="id_sixth_name">
+			<input type="text" name="seventh_name" class="form-control" placeholder="Атаңыздың атасының әкесі" maxlength="40" id="id_seventh_name">
+			<br>
+			<hr>
+			<h3>Келесі ақпараттар барлық адамдарға қол жетімді</h3>
+			<div style="">
+
+				<select name="jus" class="form-select" maxlength="90" id="id_jus">
+				  
+				  <option value="Ұлы жүз">Ұлы жүз</option>
+				  <option value="Орта жүз">Орта жүз</option>
+				  <option value="Кіші жүз">Кіші жүз</option>
+				  <option value=""></option>
+				</select>
+				<input type="text" name="ru" class="form-control" maxlength="90" id="id_ru" placeholder="Ру" style="margin-top: 5px;">
+				
+				<select name="jynys" class="form-select" maxlength="4" required id="id_jynys" >
+				  <option value="Ұл">Ұл</option>
+				  <option value="Қыз">Қыз</option>
+				  
+				</select>
+
+			</div>
+			<br>
+			{{ form.biog }}
+			<br>
+			<div style="display: flex;">
+				
+				<select name="birth_day" class="form-select" maxlength="3" required id="id_birth_day">
+					{% for i in range_b %}
+						<option value="{{ i }}">{{ i }}</option>
+					{% endfor %}
+				</select> 
+				
+
+				<select  name="birth_mounth" class="form-select" maxlength="20" required id="id_birth_mounth">
+					<option value="Қаңтар">Қаңтар </option>
+					<option value="Ақпан">Ақпан </option>
+					<option value="Наурыз">Наурыз </option>
+					<option value="Сәуір">Сәуір</option>
+					<option value="Мамыр">Мамыр</option>
+					<option value="Маусым">Маусым</option>
+					<option value="Шілде">Шілде</option>
+					<option value="Тамыз">Тамыз </option>
+					<option value="Қыркүйек">Қыркүйек </option>
+					<option value="Қазан">Қазан</option>
+					<option value="Қараша">Қараша </option>
+					<option value="Желтоқсан">Желтоқсан</option>
+				</select>
+
+				<select name="birth_year" class="form-select" maxlength="4" required id="id_birth_year">
+	
+					{% for i in range_y %}
+						<option value="{{ i }}">{{ i }}</option>
+					{% endfor %}
+
+				</select>
+
+				
+			</div>
+			<br>
+
+			<div>
+				<input type="text" name="contact_number" class="form-control" placeholder="Байланыс номеріңіз, міндетті емес" maxlength="11" id="id_contact_number">
+				<input type="text" name="facebook" class="form-control" placeholder="facebook(-қа) сілтеме, міндетті емес" maxlength="250" id="id_facebook">
+				<input type="text" name="instagram" class="form-control" placeholder="instagram(-ға) сілтеме, міндетті түрде" maxlength="250" required id="id_instagram">
+				<input type="text" name="whatsapp" class="form-control" placeholder="whatsapp номеріңіз, міндетті емес" maxlength="12" id="id_whatsapp">
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Қосу</button>
+		</form>
+	</div>
+	<br><br><br>
+{% endblock %}

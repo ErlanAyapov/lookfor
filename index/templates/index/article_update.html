@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<br><br>
+		<div class="container">
+			<form method="post" action="" >
+				{% csrf_token %}
+					
+				{{ form.as_p }}
+
+				<a href="{% url 'home' %}" class="btn btn-secondary">Артқа</a>
+				 
+				<button class="btn btn-primary">Өзгерту</button>
+			</form>
+		</div>
+	
+{% else %}
+	<h1>Аккаунт керек!!!</h1>
+{% endif %}
+{% endblock %}
