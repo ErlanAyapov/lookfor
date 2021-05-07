@@ -13,8 +13,7 @@
 		{% if object == request.user %}
 		<p id="nav-1"><a href=""><i class="fas fa-user-edit"></i> Өзгерту</a></p>
 		<p id="nav-1"><a href="{% url 'logout' %}"><i class="fas fa-door-open"></i> Шығу</a></p>
-		<!-- <p id="nav-2"><a href="{% url 'dialogs' %}"><i class="fas fa-envelope"></i> Хат алмасу</a></p>
-		<p id="nav-3"><a href=""><i class="fas fa-user-friends"></i> Достар</a></p> -->
+
 		{% endif %}
 	</div>
 
