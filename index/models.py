@@ -19,7 +19,7 @@ class Article(models.Model):
 	biog         = models.TextField('Өзіңіз жайында') # категория ПОСТ болған жағдайда, ПОСТ денесі (body)
 	birth_day    = models.CharField('Туылған күні', max_length = 3)
 	birth_mounth = models.CharField('Туылған Айы', max_length = 20)
-	birth_year   = models.CharField('Туылған Жылы', max_length = 4)
+	birth_year   = models.CharField('Туылған Жылы', max_length = 150)
 
 	date           = models.DateField('Уақыты', auto_now_add = True)
 	contact_number = models.CharField('Байланыс телефоны', max_length = 11, blank = True)
@@ -29,15 +29,8 @@ class Article(models.Model):
 
 	category = models.CharField('Категория', max_length = 10, blank = True, default = 'Іздеу')
 
-	if jynys == 'Ұл':
-		def __str__(self):
-			return self.first_name + ' ' + self.third_name + ' ' +self.last_name + 'ұлы'
-
-	elif jynys == 'Қыз':
-		def __str__(self):
-			return self.first_name + ' ' + self.third_name + ' ' +self.last_name + 'қызы'
-	else:
-		def __str__(self):
-			return self.first_name + ' ' + self.third_name
+	
+	def __str__(self):
+		return self.first_name + ' ' + self.third_name
 
 	
