@@ -15,7 +15,7 @@ class Article(models.Model):
 
 	ru  = models.CharField('Ру', max_length = 90, blank = True, default = 'Білмеймін')
 	jus = models.CharField('Жүз', max_length = 90, blank = True, default = 'Білмеймін')
-	jynys = models.CharField('Жынысыныз', max_length = 4)
+	jynys = models.CharField('Жынысыныз', max_length = 150)
 	biog         = models.TextField('Өзіңіз жайында') # категория ПОСТ болған жағдайда, ПОСТ денесі (body)
 	birth_day    = models.CharField('Туылған күні', max_length = 3)
 	birth_mounth = models.CharField('Туылған Айы', max_length = 20)
