@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from index.models import Article
+from mainapp.models import Article
 from simple_search import search_filter
 
 

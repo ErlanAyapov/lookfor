@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-from index.models import Article
+from mainapp.models import Article
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from .models import Chat
