@@ -23,7 +23,7 @@
 <div class="right-content">
 	
 
-	<div> 
+	<div style="width: 100%">  
 		<br>		
 		<div class="profile-form">
 			<form action="{% url 'add_post' %}" method="POST">
@@ -32,7 +32,10 @@
 				<button type="submit" class="btn btn-primary">Қосу</button>
 			</form>
 		</div>
-	 
+	 	
+	 	<div>
+	 		
+	 	
 		{% if news %}
 
 	
@@ -139,6 +142,7 @@
 		{% endfor %}
 	
 	{% endif %}
+	</div>
 	</div>
 </div>
 
