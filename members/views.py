@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
-from .forms import UserCreateForm #, UserUpdateForm, UserCustomerUpdateForm
+from .forms import UserCreateForm, UserUpdateForm # UserCustomerUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -61,3 +61,11 @@ class UserProfileView(DetailView):
         # context['all_friend_requests'] = Friend_Request.objects.all()
         return context
 
+
+class UserProfileUpdateView(UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = 'members/profile_update.html'
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect('/')
