@@ -7,7 +7,24 @@
 
 
 <div class="left-bar">
-	<h3>@{{ object.username }}</h3>
+	<div class="respon-bg">
+
+		<div class="user-picture">
+			<div>
+				{% if profile %}
+					{% for prof in profile %}
+						<img src="{{ prof.image.url}}" width="170" >
+					{% endfor %}
+				{% else %}
+					<img src="{% static 'main/image/picture.png' %}" width="170" height="170">
+				{% endif %}
+			</div>
+		</div>
+
+		<h3>@{{ object.username }}</h3>
+
+		
+	</div>
 
 	<div>
 		
@@ -15,11 +32,7 @@
 	</div>
 
 	<div class="left-bar-nav">
-		{% if object == request.user %}
-		<p id="nav-1"><a href="{% url 'profile_update' object.id  %}"><i class="fas fa-user-edit"></i> Өзгерту</a></p>
-		<p id="nav-1"><a href="{% url 'logout' %}"><i class="fas fa-door-open"></i> Шығу</a></p>
-
-		{% endif %}
+		 
 	</div>
 
 	
@@ -148,9 +161,11 @@
 	
 	{% endif %}
 	</div>
-	{% if not object.first_name %}
+		{% if not object.first_name %}
 			<h5 style="text-align: center;">Бұл сенімсіз аккаунт!</h5>			
 		{% endif %}
+		
+
 	</div>
 </div>
 

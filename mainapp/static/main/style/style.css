@@ -202,12 +202,26 @@ body {
 	width: 95%;
 	margin: auto;
 }
+@media screen and (max-width: 1015px) {
+	.user-picture div img {
+		width: 80%;
+	}
+}
 @media screen and (max-width: 800px) {
 	.object-biog {
 		display: none;
 	}
 	.object-name {
 		width: 100%;
+		float: none;
+	}
+	#object-biog {
+		display: block;
+		width: 100%;
+		float: none;
+	}
+	.object-body {
+		display: inline-block;
 	}
 
 
@@ -216,13 +230,16 @@ body {
 	.left-bar {
 		width: 100%;
 		position: absolute;
-		height: 20vh;
-		display: block;
+		height: 0;
+		
+		position: absolute;
 	}
 	.right-content {
 		width: 100%;
 		display: block;
 		margin-top: 30%;
+		float: none;
+		position: absolute;
 	}
 	.left-bar-nav {
 		display: flex;
@@ -233,7 +250,18 @@ body {
 	}
 	.left-bar-nav p {
 		padding: 5px;
-
+	}
+	.user-picture {
+		width: 30%;
+		float: left;
+	}
+	.left-bar h3 {
+		float: right;
+		width: 70%;
+	}
+	.respon-bg {
+		display: inline-block;
+		background: #fff;
 	}
 }
 @media screen and (max-width: 400px) {
@@ -251,7 +279,7 @@ body {
 		margin-top: 2.5px;
 	}
 	.right-content {
-		margin-top: 50%;
+		
 	}
 }
 /*@media screen and (max-width: 355px) {
@@ -274,4 +302,16 @@ body {
 	.object-header {
 		height: 70px;
 	}
+}
+
+.user-picture div img{
+	display: flex;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+}
+.user-picture div {
+	background: #888;
+	display: flex;
 }

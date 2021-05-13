@@ -12,7 +12,7 @@ from django.views.generic import ListView, DetailView, UpdateView, DeleteView, C
 from mainapp.models import Article
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from .models import Chat
+from .models import Customer
 
 
 def register(request):
@@ -58,6 +58,7 @@ class UserProfileView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data(**kwargs)
         context['news'] = Article.objects.order_by('-date')
+        context['profile'] = Customer.objects.all()
         # context['all_friend_requests'] = Friend_Request.objects.all()
         return context
 
