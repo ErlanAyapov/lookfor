@@ -16,12 +16,17 @@
 						<img src="{{ prof.image.url}}" width="170" >
 					{% endfor %}
 				{% else %}
-					<img src="{% static 'main/image/picture.png' %}" width="170" height="170">
+					<img src="{% static 'main/image/picture.png' %}" width="170">
 				{% endif %}
 			</div>
 		</div>
 
-		<h3>@{{ object.username }}</h3>
+		 
+			<h3>@{{ object.username }}</h3>
+			<p>
+				{{ object.first_name }} {{ object.last_name }}
+			</p>
+	 
 
 		
 	</div>

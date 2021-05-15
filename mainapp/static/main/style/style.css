@@ -8,7 +8,9 @@ body {
 	background: linear-gradient(#AFEEEE, #FFEEDB) fixed;
 
 }
-
+.respon-bg p {
+	text-align: center;
+}
 .form {
 	margin: auto;
 }
@@ -268,7 +270,9 @@ body {
 	.respon-bg {
 		display: inline-block;
 		background: #fff;
+		width: 100%;
 	}
+
 }
 @media screen and (max-width: 400px) {
 	.object-header {
@@ -285,7 +289,7 @@ body {
 		margin-top: 2.5px;
 	}
 	.right-content {
-		
+		margin-top: 40%;
 	}
 }
 /*@media screen and (max-width: 355px) {
