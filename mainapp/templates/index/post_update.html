@@ -6,25 +6,15 @@
 <br><br>
 		<div class="container">
 
-				{% if object.category == 'Іздеу' %}
-				<form method="post" action="" >
-					{% csrf_token %}
-					{{ form.as_p }}
-				 
-
-					<a href="{% url 'home' %}" class="btn btn-secondary">Артқа</a>
-					 
-					<button class="btn btn-primary">Өзгерту</button>
-				</form>
-				{% else %}
-				<form method="post" action="{% url 'post_update' object.id %}">
+			
+				<form method="post" action="">
 					{% csrf_token %}
 					{{ form.biog }}
 					<a href="{% url 'home' %}" class="btn btn-secondary">Артқа</a>
 					 
 					<button class="btn btn-primary">Өзгерту</button>
 				</form>
-				{% endif %}
+				
 		</div>
 	
 {% else %}

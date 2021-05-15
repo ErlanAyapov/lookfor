@@ -81,8 +81,7 @@
 							
 						<div class="nav-icon"> 
 							<div>
-								<a href="{% url 'details' object.id %}" id="icon">
-									<i class="fas fa-angle-double-right"></i></a>
+								
 
 								{% if object.author == request.user %}
 								<a href="{% url 'update' object.id %}" id="icon">

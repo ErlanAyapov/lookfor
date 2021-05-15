@@ -10,7 +10,7 @@ class ArticleForm(ModelForm):
 		fields = [
 			'author', 'first_name', 'last_name', 'third_name', 'fourth_name', 'fiveth_name', 'sixth_name', 'seventh_name', 
 			'ru', 'jus', 'jynys', 'biog', 'birth_day', 'birth_mounth', 'birth_year',
-			'facebook', 'contact_number', 'instagram', 'whatsapp'
+			'facebook', 'contact_number', 'instagram', 'whatsapp', 'category'
 
 		]
 

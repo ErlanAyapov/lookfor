@@ -77,3 +77,12 @@ class ArticleUpdateView(UpdateView):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect('/')
+
+class ArticlePostUpdate(UpdateView):
+	model = Article
+	form_class = PostAdd
+	template_name = 'index/post_update.html'
+	
+	def form_valid(self, form):
+		form.save()
+		return HttpResponseRedirect('/')

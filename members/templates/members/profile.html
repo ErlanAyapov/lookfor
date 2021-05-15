@@ -135,9 +135,7 @@
 							
 						<div class="nav-icon"> 
 							<div>
-								<a href="{% url 'details' obj.id %}" id="icon">
-									<i class="fas fa-angle-double-right"></i></a>
-
+								
 								{% if obj.author == request.user %}
 								<a href="{% url 'update' obj.id %}" id="icon">
 									<i class="fas fa-pen" ></i></a>
