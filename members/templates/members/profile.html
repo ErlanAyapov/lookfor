@@ -35,6 +35,7 @@
 				{% else %}
 					<img src="{% static 'main/image/picture.png' %}" width="170">
 				{% endif %}
+
 			</div>
 		</div>
 
@@ -47,12 +48,13 @@
 			{% if profile %}
 				{% for id in profile %}
 					{% if id.user == request.user %}
-					<a href="{% url 'custome_update' id.id %}">Өзгерту</a>
+					<a href="{% url 'custome_update' id.id %}" class="btn-primary btn" style="width: 90%; text-align: center; margin-left: 5%; margin-top: 20px;">Cуретті згерту</a>
 					{% endif %}
 				{% endfor%}
 			{% else %}
-				<a href="{% url 'pic_update' request.user.id %}">Толық ақпарат қосу</a>
+				<a href="{% url 'pic_update' request.user.id %}" class="btn-primary btn" style="width: 90%; text-align: center; margin-left: 5%; margin-top: 20px;">Толық ақпарат қосу</a>
 	 		{% endif %}
+
 	 		
 
 		
@@ -79,7 +81,7 @@
 			<form action="{% url 'add_post' %}" method="POST">
 				{% csrf_token %}
 				<textarea name="biog" rows="5" class="form-control" placeholder="Жаңалықпен бөліс" required id="id_biog"></textarea> 
-				<button type="submit" class="btn btn-primary">Қосу</button>
+				<button type="submit" class="btn btn-primary" style="margin-top: 7px;">Қосу</button>
 			</form>
 		</div>
 	 	

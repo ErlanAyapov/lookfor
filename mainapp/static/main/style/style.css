@@ -204,6 +204,39 @@ body {
 	width: 95%;
 	margin: auto;
 }
+.content-ctn {
+	display: flex;
+	justify-content: center;
+	width: 80%;
+	margin: auto;
+} 
+[type=radio] { 
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+[type=radio] + img {
+	cursor: pointer;
+	box-sizing: border-box;
+	transition: 0.2s;
+	
+	
+}
+[type=radio] + img:hover {
+	border-radius: 15px;
+	background: rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 15px;
+}
+[type=radio]:checked + img { 
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 15px;	
+	box-shadow: 0 0 15px;
+}
+
+
+
 @media screen and (max-width: 1015px) {
 	.user-picture div img {
 		width: 80%;
@@ -245,7 +278,7 @@ body {
 	.right-content {
 		width: 100%;
 		display: block;
-		margin-top: 30%;
+		margin-top: 40%;
 		float: none;
 		position: absolute;
 	}
@@ -289,7 +322,7 @@ body {
 		margin-top: 2.5px;
 	}
 	.right-content {
-		margin-top: 40%;
+		margin-top: 60%;
 	}
 }
 /*@media screen and (max-width: 355px) {

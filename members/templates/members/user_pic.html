@@ -2,47 +2,54 @@
 {% load static %}
 
 {% block content %}
-<style type="text/css">
-	[type=radio] { 
-	  position: absolute;
-	  opacity: 0;
-	  width: 0;
-	  height: 0;
-	}
-
-	/* IMAGE STYLES */
-	[type=radio] + img {
-	  cursor: pointer;
-	}
-
-	/* CHECKED STYLES */
-	[type=radio]:checked + img {
-	  outline: 2px solid #f00;
-	}
-</style><br>
 <br>
-	<div class="container">
+<br>
+	<div class="content-ctn">
 		<form action="" method="POST">
 			{% csrf_token %}
-			<label>
-				<input type="radio" name="picture" required id="id_picture" value="1">
-				<img src="{% static 'main/user/1.png' %}">
-			</label>
+			<div class="">
+				<label>
+					<input type="radio" name="picture" required id="id_picture" value="1"> 
+					<img src="{% static 'main/user/1.png' %}" width="150">
+				</label>
 
-			<label>
-				<input type="radio" name="picture" required id="id_picture" value="2">
-				<img src="{% static 'main/user/2.png' %}">
-			</label>
+				<label>
+					<input type="radio" name="picture" required id="id_picture" value="2">
+					<img src="{% static 'main/user/2.png' %}" width="150">
+				</label>
 
-			<label>
-				<input type="radio" name="picture" required id="id_picture" value="3">
-				<img src="{% static 'main/user/3.png' %}">
-			</label>
+				<label>
+					<input type="radio" name="picture" required id="id_picture" value="3">
+					<img src="{% static 'main/user/3.png' %}" width="150">
+				</label>
+
+				
+				
+				<label>
+					<input type="radio" name="picture" required id="id_picture" value="4">
+					<img src="{% static 'main/user/4.png' %}" width="150" >
+				</label>
+
+				<label>
+					<input type="radio" name="picture" required id="id_picture" value="5">
+					<img src="{% static 'main/user/5.png' %}" width="150">
+				</label>
+
+				<label>
+					<input type="radio" name="picture" required id="id_picture" value="6">
+					<img src="{% static 'main/user/6.png' %}" width="150">
+				</label>
+			</div>
 			<br>
 
 			<button class="btn btn-primary" type="submit">Таңдау</button>
+			<br>
 		</form>
+		<br>
+		<br>
 	</div>
+	<br>
+	<br> 
 
 	
 {% endblock %}
