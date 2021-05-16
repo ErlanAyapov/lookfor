@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
-from .forms import UserCreateForm, UserUpdateForm # UserCustomerUpdateForm
+from .forms import UserCreateForm, UserUpdateForm, CustomerForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -67,6 +67,38 @@ class UserProfileUpdateView(UpdateView):
     model = User
     form_class = UserUpdateForm
     template_name = 'members/profile_update.html'
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect('/')
+
+
+def CustomeView(request, pk):
+     
+    if request.method == 'POST':
+        news_form = CustomerForm(request.POST)
+        
+        # self.instance.author = self.request.user
+        if news_form.is_valid():
+            news_form = news_form.save(commit=False)
+            news_form.user = request.user
+            news_form.save()
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponse('Дұрыс толтырылмады!')
+
+    news_form = CustomerForm()
+    data = {
+        'form':news_form
+    }
+     
+    return render(request, 'members/user_pic.html', data)
+
+
+class CustomeUpdateView(UpdateView):
+    model = Customer
+    form_class = CustomerForm
+    template_name = 'members/custome_update.html'
+     
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect('/')

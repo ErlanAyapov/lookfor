@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls')),
-    path('account/', include('members.urls')),
+    path('user/', include('members.urls')),
     path('search/', include('search.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # статик файлдарды қосу 
 

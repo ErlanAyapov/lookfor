@@ -12,9 +12,26 @@
 		<div class="user-picture">
 			<div>
 				{% if profile %}
-					{% for prof in profile %}
-						<img src="{{ prof.image.url}}" width="170" >
+					{% for id in profile %}
+						{% if id.user == request.user %}
+							{% if id.picture == '1' %}
+							<img src="{% static 'main/user/1.png' %}" width="170" >
+
+							{% elif id.picture == '2' %}
+							<img src="{% static 'main/user/2.png' %}" width="170" >
+
+							{% elif id.picture == '3' %}
+							<img src="{% static 'main/user/3.png' %}" width="170" >
+
+							{% elif id.picture == '5' %}
+							<img src="{% static 'main/user/5.png' %}" width="170" >
+
+							{% elif id.picture == '6' %}
+							<img src="{% static 'main/user/6.png' %}" width="170" >
+ 							{% endif %}
+						{% endif %}
 					{% endfor %}
+
 				{% else %}
 					<img src="{% static 'main/image/picture.png' %}" width="170">
 				{% endif %}
@@ -26,7 +43,17 @@
 			<p>
 				{{ object.first_name }} {{ object.last_name }}
 			</p>
-	 
+			 
+			{% if profile %}
+				{% for id in profile %}
+					{% if id.user == request.user %}
+					<a href="{% url 'custome_update' id.id %}">Өзгерту</a>
+					{% endif %}
+				{% endfor%}
+			{% else %}
+				<a href="{% url 'pic_update' request.user.id %}">Толық ақпарат қосу</a>
+	 		{% endif %}
+	 		
 
 		
 	</div>
