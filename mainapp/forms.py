@@ -1,4 +1,4 @@
-from .models import Article
+from .models import Article, Comment
 from django.forms import ModelForm, TextInput, DateTimeInput, Textarea
 
 
@@ -51,3 +51,16 @@ class PostAdd(ModelForm):
 		}
 
 		exclude = ['author', 'category']
+
+
+class CommentForm(ModelForm):
+	class Meta:
+		model  = Comment
+		fields = ['author', 'post', 'body']
+
+		widgets = {
+			'body':  Textarea (attrs={'class': 'form-control', 'placeholder': 'Пікір қалдыр',}),
+			'post':  TextInput(attrs={'class': 'form-control', 'placeholder': 'post',}),
+		}
+
+		exclude = ['author']

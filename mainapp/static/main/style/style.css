@@ -234,9 +234,34 @@ body {
 	border-radius: 15px;	
 	box-shadow: 0 0 15px;
 }
+.comment-container {
+	padding: 20px;
+	font-size: 13px;
+	background: rgba(0, 0, 0, 0.1);
 
+}
+.comment {
+	margin-bottom: 10px;
+}
+.comment a {
+	text-decoration: none;
+}
+.form-container {
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.3);
 
-
+}
+.form-container form {
+	height: 37px;
+}
+.form-container form textarea {
+	width: 85%; 
+	float: left;
+}
+.form-container form button {
+	width: 14%; 
+	float: right;
+}
 @media screen and (max-width: 1015px) {
 	.user-picture div img {
 		width: 80%;

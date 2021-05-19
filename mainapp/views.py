@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Article
+from .models import Article, Comment
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
-from .forms import ArticleForm, PostAdd
+from .forms import ArticleForm, PostAdd, CommentForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse_lazy
 # def MainView(request):
@@ -12,6 +12,10 @@ class MainView(ListView):
 	template_name = 'index/index.html'
 	ordering = '-date'
 
+	def get_context_data(self, **kwargs):
+		context = super(MainView, self).get_context_data(**kwargs)
+		context['comment'] = Comment.objects.all()
+		return context
 
 class MainDetailView(DetailView):
 	model = Article
@@ -86,3 +90,25 @@ class ArticlePostUpdate(UpdateView):
 	def form_valid(self, form):
 		form.save()
 		return HttpResponseRedirect('/')
+
+
+def CommentAddView(request):
+	if request.method == 'POST':
+		comment_form = CommentForm(request.POST)
+		
+		# self.instance.author = self.request.user
+		if comment_form.is_valid():
+			comment_form = comment_form.save(commit=False)
+			comment_form.author = request.user
+			comment_form.category = 'Пост'
+			comment_form.save()
+			return HttpResponseRedirect('/')
+		else:
+			return HttpResponse('Дұрыс толтырылмады!')
+
+	comment_form = CommentForm()
+	data = {
+		'comment_form':comment_form,
+		 
+	}
+	return render(request, 'index/comment.html', data)

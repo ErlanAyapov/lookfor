@@ -67,10 +67,67 @@
 						{{ object.biog }}
 					</div>
 
+
 					
 				</div>
-				
-			</div>
+				<div class="my-container">
+					<div class="object-header">
+						<div class="author-date">
+							<a href="{% url 'profile' object.author.id %}"> @{{ object.author }} </a>  | {{ object.date }}
+							
+						</div>
+							
+						<div class="nav-icon"> 
+							<div>
+								
+
+								{% if object.author == request.user %}
+								<a href="{% url 'update' object.id %}" id="icon">
+									<i class="fas fa-pen" ></i></a>
+
+								<a href="{% url 'delete' object.id %}" id="icon">
+									<i class="fas fa-trash"></i></i></a>
+								{% endif %}	
+							</div>
+						</div> 
+					</div>
+
+					<div class="category-post">
+						<p>{{ object.biog }}</p>
+					</div>
+					 
+					<div class="comment-container">
+					<div class="comment-block">
+						{% if comment  %}
+							{% for i in comment %}
+								 
+								{% if i.post.id == object.id %}
+									<div class="comment">
+										<h5><a style="" href="{% url 'profile' i.author.id %}">@{{i.author}}</a></h5>
+										<p>{{ i.body }}</p><hr>
+									</div>
+									
+								{% endif %}
+
+							{% endfor %}
+						
+						{% endif %}
+						<!-- <a href="{% url 'add_comment' %}" class="btn btn-primary">Пікір қалдыру</a> -->
+
+						
+					</div>
+					
+				</div>
+				<div class="form-container">
+						<form action="{% url 'add_comment' %}" method="POST">
+							{% csrf_token %}
+							<textarea name="body" cols="40" rows="1" class="form-control" placeholder="Пікір қалдыр" required id="id_body" style=""></textarea>
+							<input type="hidden" name="post" required id="id_post" value="{{ object.id }}">
+							<button type="submit" class="btn btn-primary"  style="">+</button>
+							 
+						</form>
+					</div>
+				</div>
 			{% elif object.category == 'Пост' %}
 				<div class="my-container">
 					<div class="object-header">
@@ -97,12 +154,44 @@
 					<div class="category-post">
 						<p>{{ object.biog }}</p>
 					</div>
+					 
+					<div class="comment-container">
+					<div class="comment-block">
+						{% if comment  %}
+							{% for i in comment %}
+								 
+								{% if i.post.id == object.id %}
+									<div class="comment">
+										<h5><a style="" href="{% url 'profile' i.author.id %}">@{{i.author}}</a></h5>
+										<p>{{ i.body }}</p><hr>
+									</div>
+									
+								{% endif %}
 
+							{% endfor %}
+						
+						{% endif %}
+						<!-- <a href="{% url 'add_comment' %}" class="btn btn-primary">Пікір қалдыру</a> -->
+
+						
+					</div>
+					
+				</div>
+				<div class="form-container">
+						<form action="{% url 'add_comment' %}" method="POST">
+							{% csrf_token %}
+							<textarea name="body" cols="40" rows="1" class="form-control" placeholder="Пікір қалдыр" required id="id_body" style=""></textarea>
+							<input type="hidden" name="post" required id="id_post" value="{{ object.id }}">
+							<button type="submit" class="btn btn-primary"  style="">+</button>
+							 
+						</form>
+					</div>
 				</div>
 			{% endif %}
 		{% endfor %}
 	{% else %}<br><br>
 	<br><br>
+
 
 <br><br>
 

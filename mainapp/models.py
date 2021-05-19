@@ -34,3 +34,10 @@ class Article(models.Model):
 		return self.first_name + ' ' + self.third_name
 
 	
+class Comment(models.Model):
+	post   = models.ForeignKey(Article, on_delete=models.CASCADE)
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	body   = models.TextField('Пікір')
+
+	def __str__(self):
+		return str(self.author)
