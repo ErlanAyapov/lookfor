@@ -13,7 +13,7 @@
 			<div>
 				{% if profile %}
 					{% for id in profile %}
-						{% if id.user == request.user %}
+						{% if id.user == object %}
 							{% if id.picture == '1' %}
 							<img src="{% static 'main/user/1.png' %}" width="170" >
 
@@ -28,12 +28,15 @@
 
 							{% elif id.picture == '6' %}
 							<img src="{% static 'main/user/6.png' %}" width="170" >
- 							{% endif %}
+							{% else %}
+							<img src="{% static 'main/image/picture.png' %}" width="170">
+ 							
+							{% endif %}
+						
 						{% endif %}
 					{% endfor %}
 
-				{% else %}
-					<img src="{% static 'main/image/picture.png' %}" width="170">
+				
 				{% endif %}
 
 			</div>
@@ -44,16 +47,31 @@
 			<p>
 				{{ object.first_name }} {{ object.last_name }}
 			</p>
+			{% if request.user == object %}
 			 
-			{% if profile %}
-				{% for id in profile %}
-					{% if id.user == request.user %}
-					<a href="{% url 'custome_update' id.id %}" class="btn-success btn" style="width: 90%; text-align: center; margin-left: 5%; margin-top: 20px;">Cуретті өзгерту</a>
-					{% endif %}
-				{% endfor%}
-			{% else %}
-				<a href="{% url 'pic_update' request.user.id %}" class="btn-success btn" style="width: 90%; text-align: center; margin-left: 5%; margin-top: 20px;">Толық ақпарат қосу</a>
+				{% if profile %}
+					{% for id in profile %}
+						{% if id.user == object %}
+							{% if id.picture %}
+								<a href="{% url 'custome_update' id.id %}" class="btn-success btn" style="width: 90%; text-align: center; margin-left: 5%; margin-top: 20px;">Cуретті өзгерту</a>
+							 
+							
+							{% endif %}
+						 
+							 
+						{% endif %}
+
+					{% endfor%}
+		
+	<!-- <a href="{% url 'pic_update' request.user.id %}" class="btn-success btn" style="width: 90%; text-align: center; margin-left: 5%; margin-top: 20px;">Cурет қосу</a>	  -->
+					
+				
+		 		{% endif %}
 	 		{% endif %}
+
+
+
+	 			
 
 	 		
 

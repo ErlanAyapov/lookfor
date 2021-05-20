@@ -9,27 +9,33 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-from mainapp.models import Article
+from mainapp.models import Article, Comment
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from .models import Customer
-
+ 
 
 def register(request):
- 	if request.method == 'POST':
- 		form = UserCreateForm(request.POST)
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST)
 
- 		if form.is_valid():
- 			form.save()
- 			return redirect('auth')
+        if form.is_valid():
+            form.save() # если данные из формы валидны то сохраняем
+            username = request.POST.get('username') # имя пользователя для аутентификаци
+            password = request.POST.get('password1') # пороль пользователя для аутентификаци
+            user = authenticate(request, username = username, password = password)
 
- 		else:
- 			return HttpResponse("<h1 style = 'text-align: center;'>Логин бос емес немесе құпия сөз құптамасы дұрыс емес</h1>")
+            if user is not None: # тут проверяем если не авторизован то тут же авторизуем 
+                login(request, user)
+                return HttpResponseRedirect('/user/image' + str(request.user.id)) 
 
- 	else:
- 		form = UserCreateForm()
+        else:
+            return HttpResponse("<h1 style = 'text-align: center;'>Логин бос емес немесе құпия сөз құптамасы дұрыс емес</h1>")
+
+    else:
+        form = UserCreateForm()
   
- 	return render(request, 'members/register.html', {'register_form':form})
+    return render(request, 'members/register.html', {'register_form':form})
 
 
 def auth(request):
@@ -40,7 +46,7 @@ def auth(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return HttpResponseRedirect('/user/image' + str(request.user.id))
         else:
             return HttpResponse("<h1 style = 'text-align: center;'>Қолданушы атауы немесе құпия сөз дұрыс емес!</h1>")
     return render(request, 'members/auth.html')
@@ -59,6 +65,7 @@ class UserProfileView(DetailView):
         context = super(UserProfileView, self).get_context_data(**kwargs)
         context['news'] = Article.objects.order_by('-date')
         context['profile'] = Customer.objects.all()
+        context['comments'] = Comment.objects.all()
         # context['all_friend_requests'] = Friend_Request.objects.all()
         return context
 
