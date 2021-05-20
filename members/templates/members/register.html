@@ -15,14 +15,18 @@
 			{{ register_form.username}}<br>
 
 			{{ register_form.password1.label}}<br>
-			{{ register_form.password1}}<br>
+			<input class="pass" type="text" name="password1" autocomplete="new-password" required id="id_password1"><br> 
 
 			{{ register_form.password2.label}}<br>
-			{{ register_form.password2}}<br>
+			<input class="pass" type="text" name="password2" autocomplete="new-password" required id="id_password2"><br>
 			<button type="submit">Тіркелу</button>
 			<br><br>
 
-			Егер аккаунтыңыз бар болса <a href="{% url 'auth' %}">кіріңіз</a>
+			Егер аккаунтыңыз бар болса <a href="{% url 'auth' %}">кіріңіз</a><br>
+			
 		</form>
+		
 	</div>
+
 {% endblock %}
+
