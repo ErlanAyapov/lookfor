@@ -46,7 +46,7 @@ def auth(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/user/image' + str(request.user.id))
+            return HttpResponseRedirect('/user/profile/' + str(request.user.id))
         else:
             return HttpResponse("<h1 style = 'text-align: center;'>Қолданушы атауы немесе құпия сөз дұрыс емес!</h1>")
     return render(request, 'members/auth.html')
