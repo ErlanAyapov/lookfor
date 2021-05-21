@@ -64,3 +64,13 @@ class CommentForm(ModelForm):
 		}
 
 		exclude = ['author']
+
+class CommentUpdateForm(ModelForm):
+	class Meta:
+		model  = Comment
+		fields = ['body']
+		widgets = {
+			'body':  Textarea (attrs={'class': 'form-control', 'placeholder': 'Пікір қалдыр',}),
+		}
+
+		

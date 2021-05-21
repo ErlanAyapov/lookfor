@@ -163,7 +163,7 @@
 								{% if i.post.id == object.id %}
 									<div class="comment">
 										<h5><a style="" href="{% url 'profile' i.author.id %}">@{{i.author}}</a></h5>
-										<p>{{ i.body }}</p><hr>
+										<p>{{ i.body }}  {% if request.user == i.author %}<a href="{% url 'update_comment' i.id %}"><i class="fas fa-pen" ></i></a>{% endif %}</p><hr>
 									</div>
 									
 								{% endif %}

@@ -23,10 +23,56 @@
 			<br><br>
 
 			Егер аккаунтыңыз бар болса <a href="{% url 'auth' %}">кіріңіз</a><br>
+			<br>
+			{% if message %}
+				<div class="alert alert-danger" role="alert">
+					{{ message }}
+					<br>
+					<p style="background: #fff; padding: 5px;">
+						Егер тіркеле алмасаңыз<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> оқыңыз </button>
+					</p>
+					
+				</div>
+
+			{% endif %}
 			
 		</form>
+
 		
 	</div>
+	<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Тіркелу</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    	<h3>Құпия сөз</h3>
+    	<ul>
+    		<li>Латын алфавитін де болу керек</li>
+    		<li>8 символдан көп болуы шарт </li>
+    		<li>Арасында 1 цифр болу тиіс</li>
+    	</ul>
+
+    	<h3>Қолданушы атауы (username)</h3>
+    	<ul>
+    		<li>Латын алфавитін де болу керек</li>
+    		<li>3 символдан көп болуы шарт </li>
+    		<li>Басқа қолданушылардікімен сәйкес болмауы тйіс</li>
+    	</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 

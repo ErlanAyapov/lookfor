@@ -41,6 +41,10 @@
               <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}"><i class="fas fa-user"></i> Жеке парақ</a></li>
               <li><a class="dropdown-item" href="{% url 'profile_update' request.user.id  %}"><i class="fas fa-user-edit"></i> Өзгерту</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-door-open"></i> Шығу</a></li>
+              {% if object.is_staff %}
+	 		    <li><a class="dropdown-item" href="/admin"><i class="fas fa-paper"></i>Админ панель</a></li>
+	 		   
+	 		  {% endif %}
             </ul>
           </li>
 	      

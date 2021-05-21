@@ -16,6 +16,7 @@ from .models import Customer
  
 
 def register(request):
+    error = ''
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
 
@@ -30,7 +31,12 @@ def register(request):
                 return HttpResponseRedirect('/user/image' + str(request.user.id)) 
 
         else:
-            return HttpResponse("<h1 style = 'text-align: center;'>Логин бос емес немесе құпия сөз құптамасы дұрыс емес</h1>")
+            error = 'Логин бос емес немесе құпия сөздер сәйкес емес!'
+            context = {
+                'register_form':form,
+                'message':error,
+            }
+            return render(request, 'members/register.html', context)
 
     else:
         form = UserCreateForm()
@@ -39,6 +45,7 @@ def register(request):
 
 
 def auth(request):
+    error = ''
     if request.method == 'POST':
         username = request.POST.get('username') 
         password = request.POST.get('password')
@@ -48,7 +55,8 @@ def auth(request):
             login(request, user)
             return HttpResponseRedirect('/user/profile/' + str(request.user.id))
         else:
-            return HttpResponse("<h1 style = 'text-align: center;'>Қолданушы атауы немесе құпия сөз дұрыс емес!</h1>")
+            error = 'Қолданушы атауы немесе құпия сөз дұрыс емес!'
+            return render(request, 'members/auth.html', {'error':error})
     return render(request, 'members/auth.html')
 
 

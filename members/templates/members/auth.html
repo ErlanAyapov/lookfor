@@ -19,6 +19,13 @@
 			<button type="submit">Кіру</button><br><br>
 
 			Егер аккаунтыңыз жоқ болса <a href="{% url 'register' %}">тіркеліңіз</a>
+
+			{% if error %}
+				<div class="alert alert-danger" role="alert">
+				 {{ error }}
+				</div>
+			{% endif %}
 		</form>
 	</div>
+	
 {% endblock %}

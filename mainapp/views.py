@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Article, Comment
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
-from .forms import ArticleForm, PostAdd, CommentForm
+from .forms import ArticleForm, PostAdd, CommentForm, CommentUpdateForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse_lazy
 # def MainView(request):
@@ -112,3 +112,17 @@ def CommentAddView(request):
 		 
 	}
 	return render(request, 'index/comment.html', data)
+
+class CommentUpdateView(UpdateView):
+	model = Comment
+	form_class = CommentUpdateForm
+	template_name = 'index/comment_update.html'
+
+	def form_valid(self, form):
+		form.save()
+		return HttpResponseRedirect('/')
+
+# class CommentUpdateView(DeleteView):
+# 	model = Comment
+# 	template_name = 'index/comment_update.html'
+# 	success_url = reverse_lazy('home')
